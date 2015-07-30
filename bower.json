@@ -1,0 +1,27 @@
+{
+  "name": "ngFirebaseUser",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jhairau/ngFirebaseUser",
+  "authors": [
+    "Johnathan Hair <johnathan.hair.au@gmail.com>"
+  ],
+  "description": "Angular Module for Firebase 1.1+ authentication & user management",
+  "main": "ngFirebaseUser.js",
+  "keywords": [
+    "angular",
+    "firebase",
+    "login",
+    "auth",
+    "user",
+    "management"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
