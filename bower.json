@@ -6,7 +6,7 @@
     "Johnathan Hair <johnathan.hair.au@gmail.com>"
   ],
   "description": "Angular Module for Firebase 1.1+ authentication & user management",
-  "main": "ngFirebaseUser.js",
+  "main": "dist/ngFirebaseUser.js",
   "keywords": [
     "angular",
     "firebase",
@@ -17,8 +17,20 @@
   ],
   "license": "MIT",
   "private": true,
+  "dependencies": {
+      "angular": ">=1.2.1",
+      "angularfire": ">=1.1.1"
+  },
   "ignore": [
-    "**/.*",
+    "src",
+    "spec",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    "bower.json",
+    "gruntfile.js",
+    "package.json",
     "node_modules",
     "bower_components",
     "test",
