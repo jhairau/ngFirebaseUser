@@ -49,13 +49,6 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * @return {[type]} [description]
          */
         this.getConfigValue = function(key) {
-
-            // key doesn't exist
-            if (!baseConfig[key]) {
-                console.log('The key: ' + key + 'does not exist');
-                return false;
-            }
-
             return baseConfig[key];
         };
 
@@ -107,6 +100,15 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
             } // if
         }
     ]);
+
+angular.module('ngFirebaseUser')
+    .directive('ngFirebaseUserLoginForm', ['ngFirebaseUserConfig', function(ngFirebaseUserConfig) {
+        return {
+            scope: {},
+            restrict: 'E',
+            templateUrl: ngFirebaseUserConfig.get('templatePath') + '/login-form.html'
+        };
+    }]);
 
 angular.module('ngFirebaseUser')
 	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
@@ -170,7 +172,9 @@ angular.module('ngFirebaseUser')
 				$rootScope.$broadcast(self.EVENTS.USER_LOGOUT);
 
 				// Unbind the user object
-				unbindUser();
+				if (typeof unbindUser == 'function') {
+					unbindUser();	
+				}
 			}
 		});
 

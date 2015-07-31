@@ -60,7 +60,9 @@ angular.module('ngFirebaseUser')
 				$rootScope.$broadcast(self.EVENTS.USER_LOGOUT);
 
 				// Unbind the user object
-				unbindUser();
+				if (typeof unbindUser == 'function') {
+					unbindUser();	
+				}
 			}
 		});
 

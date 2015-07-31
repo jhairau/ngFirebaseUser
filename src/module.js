@@ -41,13 +41,6 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * @return {[type]} [description]
          */
         this.getConfigValue = function(key) {
-
-            // key doesn't exist
-            if (!baseConfig[key]) {
-                console.log('The key: ' + key + 'does not exist');
-                return false;
-            }
-
             return baseConfig[key];
         };
 
