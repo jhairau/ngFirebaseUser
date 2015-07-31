@@ -1,5 +1,5 @@
 angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
-    .provider('ngFirebaseUserConfig', ['$log', function ngFirebaseUserConfigProvider($log) {
+    .provider('ngFirebaseUserConfig', function ngFirebaseUserConfigProvider() {
 
         // The base configuration
         var baseConfig = {
@@ -44,7 +44,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
 
             // key doesn't exist
             if (!baseConfig[key]) {
-                $log.error('The key: ' + key + 'does not exist');
+                console.log('The key: ' + key + 'does not exist');
                 return false;
             }
 
@@ -59,13 +59,13 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
         this.$get = function() {
 
             return {
-                get: getConfigValue
+                get: this.getConfigValue
             };
 
         };
 
         return this;
-    }])
+    })
     .run(['$rootScope', 'ngFirebaseUserUser', '$state', 'ngFirebaseUserConfig',
         function($rootScope, ngFirebaseUserUser, $state, ngFirebaseUserConfig) {
 
