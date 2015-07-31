@@ -1,4 +1,4 @@
-angular.module('templates-dist', ['templates/bootstrap3/login-form.html', 'templates/ionic/login-form.html']);
+angular.module('ng-firebaseuser-templates', ['templates/bootstrap3/login-form.html', 'templates/ionic/login-form.html']);
 
 angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/bootstrap3/login-form.html",

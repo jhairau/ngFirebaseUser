@@ -72,7 +72,9 @@ module.exports = function(grunt) {
 
     html2js: {
       dist: {
-        options: {},
+        options: {
+          module: 'ng-firebaseuser-templates'
+        },
         files: [{
           src: ['src/templates/**/*.html'],
           dest: '<%= dirs.dest %>/<%= pkg.name %>.tpls.js'
