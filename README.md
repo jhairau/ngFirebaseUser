@@ -48,3 +48,11 @@ Allow the developer to override paths in Firebase
 
 ## Credit
 Inspired by the work over at https://github.com/Jon-Biz/FireUser
+
+    .config(function(FirebaseUserConfigProvider) {
+    
+        ngFirebaseUserConfigProvider.setConfig({
+            'firebaseUrl': 'https://arterial-blood-gas.firebaseio.com'
+        });
+    })
+    ...

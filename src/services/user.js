@@ -66,11 +66,11 @@ angular.module('ngFirebaseUser')
 
 
 		/**
-		 * Private methodd to load the user
+		 * Method to load the user
 		 * @param  {[type]} uid [description]
 		 * @return {[type]}     [description]
 		 */
-		var loadUser = function(uid) {
+		this.loadUser = function(uid) {
 			var userObject = $firebaseObject(usersRef.child(uid));
 
 			// Run when user is loaded
