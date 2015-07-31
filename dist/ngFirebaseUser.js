@@ -71,6 +71,8 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-temp
     .run(['$rootScope', 'ngFirebaseUserUser', '$state', 'ngFirebaseUserConfig',
         function($rootScope, ngFirebaseUserUser, $state, ngFirebaseUserConfig) {
 
+        	/*
+        	May not use this func here
             if (ngFirebaseUserConfig.get('routing')) {
                 var checked;
 
@@ -99,6 +101,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-temp
                 });
 
             } // if
+            */
         }
     ]);
 
@@ -184,6 +187,13 @@ angular.module('ngFirebaseUser')
 
 				// Load the user
 				self.loadUser(authData.uid);
+
+				// Route the user if required
+				if (ngFirebaseUserConfig.get('redirectPathLoggedIn') && ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+					if ($loaction.url() != ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+						$location.url(ngFirebaseUserConfig.get('redirectPathLoggedIn'));	
+					}
+				}
 			} else {
 
 				// Broadcast logout success
