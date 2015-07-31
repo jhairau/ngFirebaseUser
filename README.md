@@ -45,3 +45,6 @@ Allow the developer to override paths in Firebase
 - User Created Error
 - User Loaded
 - User Updated
+
+## Credit
+Inspired by the work over at https://github.com/Jon-Biz/FireUser
