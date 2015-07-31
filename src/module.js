@@ -6,8 +6,9 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
             firebaseUrl: null, // The base url for the Firebase app
             firebaseUserPath: 'user', // The base path within Firebase where user data is stored
             firebaseDataPath: 'data', // The baee apth within Firebase where app data is stored
-            redirectPath: '/', // The path to redirect the ng app to when user is not authed
-
+            
+            redirectPathLoggedIn: null, // The path to redirect the user to when the are now authed (optional)
+            redirectPathLoggedOut: null, // The path to redirect the ng app to when user is not authed
             angularUserNamespace: 'user', // The namespace to use in rootScope for user data
 
             routing: false, // Whether the should route the user based on auth
