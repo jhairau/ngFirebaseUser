@@ -132,7 +132,7 @@ angular.module('ngFirebaseUser')
     }]);
 
 angular.module('ngFirebaseUser')
-	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
+	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $location, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
 
 		var self = this;
 		var unbindUser = null;
@@ -190,7 +190,7 @@ angular.module('ngFirebaseUser')
 
 				// Route the user if required
 				if (ngFirebaseUserConfig.get('redirectPathLoggedIn') && ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
-					if ($loaction.url() != ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+					if ($location.url() == ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
 						$location.url(ngFirebaseUserConfig.get('redirectPathLoggedIn'));	
 					}
 				}
