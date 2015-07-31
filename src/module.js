@@ -12,7 +12,9 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
 
             routing: false, // Whether the should route the user based on auth
             routeAccess: 'private',
-            routeRedirect: 'login'
+            routeRedirect: 'login',
+
+            templatePath: 'templates/bootstrap3'
         };
 
 

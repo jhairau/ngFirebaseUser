@@ -69,6 +69,16 @@ module.exports = function(grunt) {
         dest: '<%= dirs.dest %>/<%= pkg.name %>.min.js'
       }
     },
+
+    html2js: {
+      dist: {
+        options: {},
+        files: [{
+          src: ['src/templates/**/*.html'],
+          dest: '<%= dirs.dest %>/<%= pkg.name %>.tpls.js'
+        }]
+      }
+    }
   });
 
   grunt.registerTask('watch', [
@@ -86,6 +96,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dist', [
     'jshint',
+    'html2js',
     'concat',
     'uglify'
   ]);
