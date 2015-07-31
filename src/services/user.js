@@ -1,5 +1,5 @@
 angular.module('ngFirebaseUser')
-	.service('ngFirebaseUserUser', ngFirebaseUserUser function($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
+	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
 
 		var self = this;
 		var unbindUser = null;
@@ -34,19 +34,19 @@ angular.module('ngFirebaseUser')
 		// Hash of events
 		this.EVENTS = {
 			USER_LOGIN_SUCCESS: 'ngFirebaseUser:login_success',
-		    USER_LOGIN_ERROR: 'ngFirebaseUser:login_error',
-		    USER_LOGOUT: 'ngFirebaseUser:logout',
+			USER_LOGIN_ERROR: 'ngFirebaseUser:login_error',
+			USER_LOGOUT: 'ngFirebaseUser:logout',
 
-		    USER_CREATED_SUCCESS: 'ngFirebaseUser:user_created_success',
-		    USER_CREATED_ERROR: 'ngFirebaseUser:user_created_error',
-		    USER_UPDATED: 'ngFirebaseUser:user_updated',
-		    USER_LOADED_SUCCESS: 'ngFirebaseUser:user_loaded_success',
-		    USER_LOADED_ERROR: 'ngFirebaseUser:user_loaded_error',
+			USER_CREATED_SUCCESS: 'ngFirebaseUser:user_created_success',
+			USER_CREATED_ERROR: 'ngFirebaseUser:user_created_error',
+			USER_UPDATED: 'ngFirebaseUser:user_updated',
+			USER_LOADED_SUCCESS: 'ngFirebaseUser:user_loaded_success',
+			USER_LOADED_ERROR: 'ngFirebaseUser:user_loaded_error'
 		};
-	    
+
 
 		// Trigger on Firebase authorisation events
-		authObj.$onAuth(function(authData, this) {
+		authObj.$onAuth(function(authData) {
 			if (authData) {
 
 				// Broadcast login success
@@ -85,10 +85,10 @@ angular.module('ngFirebaseUser')
 				});
 			
 			// Bind the user data to the rootScope based on the config
-			userObject.$bindTo($rootScope, ngFirebaseUserConfig.get('angularUserNamespace'));
+			userObject.$bindTo($rootScope, ngFirebaseUserConfig.get('angularUserNamespace'))
 				.then(function(unb) {
-        			unbindUser = unb;
-      			});
+					unbindUser = unb;
+				});
 		};
 
 
@@ -106,8 +106,8 @@ angular.module('ngFirebaseUser')
 			var def = $q.defer();
 
 			authObj.$authWithPassword({
-  				email: email,
-  				password: password
+				email: email,
+				password: password
 			}).then(function(authData){
 				def.resolve(authData.uid); // return the user id
 			}).catch(function(error) {
@@ -151,13 +151,13 @@ angular.module('ngFirebaseUser')
 		 */
 		this.changePassword = function(email, oldPassword, newPassword) {
 			authObj.$changePassword({
-			 	email: email,
-			 	oldPassword: oldPassword,
-			 	newPassword: newPassword
+				email: email,
+				oldPassword: oldPassword,
+				newPassword: newPassword
 			}).then(function() {
-			 	console.log("Password changed successfully!");
+				console.log("Password changed successfully!");
 			}).catch(function(error) {
-			 	console.error("Error: ", error);
+				console.error("Error: ", error);
 			});
 		};
 
@@ -184,11 +184,11 @@ angular.module('ngFirebaseUser')
 		 */
 		this.changeEmail = function(oldEmail, newEmail, password) {
 			return authObj.$changeEmail({
-  				oldEmail: oldEmail,
-  				newEmail: newEmail,
-  				password: password
+				oldEmail: oldEmail,
+				newEmail: newEmail,
+				password: password
 			});
-		}
+		};
 
 
 		// TODO: restrict to ADMIN
@@ -200,8 +200,8 @@ angular.module('ngFirebaseUser')
 		 */
 		this.createUser = function(email, password) {
 			return authObj.$createUser({
-  				email: email,
-  				password: password
+				email: email,
+				password: password
 			});
 		};
 
@@ -227,7 +227,7 @@ angular.module('ngFirebaseUser')
 		 */
 		this.requireAuth = function() {
 			return authObj.$requireAuth();
-		}
+		};
 
 		return this;
 	});

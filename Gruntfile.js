@@ -39,15 +39,12 @@ module.exports = function(grunt) {
         options: {}
       },
       test: {
-        src: ['test/spec/**/*.js'],
-        options: {
-          jshintrc: 'test/.jshintrc',
-        }
+        src: ['test/spec/**/*.js']
       }
     },
 
     watch: {
-      files: ['<%= jshint.dev.src %>'],
+      files: ['src/**/*.js'],
       tasks: ['jshint']
     },
 
@@ -58,7 +55,7 @@ module.exports = function(grunt) {
         footer: '})( window, window.angular );'
       },
       dist: {
-        src: ['src/common.js', 'src/angular-local-storage.js'],
+        src: ['src/module.js', 'src/directives/*.js', 'src/services/*.js'],
         dest: '<%= dirs.dest %>/<%= pkg.name %>.js'
       }
     },
@@ -88,7 +85,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('dist', [
-    'default',
+    'jshint',
     'concat',
     'uglify'
   ]);
