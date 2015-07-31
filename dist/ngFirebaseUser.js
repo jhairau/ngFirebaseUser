@@ -6,7 +6,7 @@
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 (function ( window, angular, undefined ) {
-angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-templates'])
+angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
     .provider('ngFirebaseUserConfig', function ngFirebaseUserConfigProvider() {
 
         // The base configuration
