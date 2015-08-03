@@ -50,7 +50,7 @@ angular.module('ngFirebaseUser')
 			if (authData) {
 
 				// Broadcast login success
-				$rootScope.$broadcast(self.EVENTS.USER_LOGIN_SUCCESS);
+				$rootScope.$broadcast(self.EVENTS.USER_LOGIN_SUCCESS, authData);
 
 				// Load the user
 				self.loadUser(authData.uid);

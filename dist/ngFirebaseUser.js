@@ -1,12 +1,12 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-07-31
+ * @version v0.0.1 - 2015-08-03
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 (function ( window, angular, undefined ) {
-angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-templates'])
+angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
     .provider('ngFirebaseUserConfig', function ngFirebaseUserConfigProvider() {
 
         // The base configuration
@@ -71,8 +71,6 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-temp
     .run(['$rootScope', 'ngFirebaseUserUser', '$state', 'ngFirebaseUserConfig',
         function($rootScope, ngFirebaseUserUser, $state, ngFirebaseUserConfig) {
 
-        	/*
-        	May not use this func here
             if (ngFirebaseUserConfig.get('routing')) {
                 var checked;
 
@@ -101,7 +99,6 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router', 'ng-firebaseuser-temp
                 });
 
             } // if
-            */
         }
     ]);
 
@@ -132,7 +129,7 @@ angular.module('ngFirebaseUser')
     }]);
 
 angular.module('ngFirebaseUser')
-	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $location, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
+	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
 
 		var self = this;
 		var unbindUser = null;
@@ -183,17 +180,10 @@ angular.module('ngFirebaseUser')
 			if (authData) {
 
 				// Broadcast login success
-				$rootScope.$broadcast(self.EVENTS.USER_LOGIN_SUCCESS);
+				$rootScope.$broadcast(self.EVENTS.USER_LOGIN_SUCCESS, authData);
 
 				// Load the user
 				self.loadUser(authData.uid);
-
-				// Route the user if required
-				if (ngFirebaseUserConfig.get('redirectPathLoggedIn') && ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
-					if ($location.url() == ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
-						$location.url(ngFirebaseUserConfig.get('redirectPathLoggedIn'));	
-					}
-				}
 			} else {
 
 				// Broadcast logout success
