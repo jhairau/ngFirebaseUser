@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-08-03
+ * @version v0.0.1 - 2015-08-04
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -68,37 +68,38 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
 
         return this;
     })
-    .run(['$rootScope', 'ngFirebaseUserUser', '$state', 'ngFirebaseUserConfig',
-        function($rootScope, ngFirebaseUserUser, $state, ngFirebaseUserConfig) {
+    .run(['$rootScope', '$state', 'ngFirebaseUserConfig',
+        function($rootScope, $state, ngFirebaseUserConfig) {
 
-            if (ngFirebaseUserConfig.get('routing')) {
-                var checked;
+          // run if we are routing
+          if (ngFirebaseUserConfig.get('routing')) {
 
-                // Run on before route changed
-                $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            // On login, redirect the user to
+            $rootScope.$on('ngFirebaseUser:login_success', function(event,authData) {
+              $rootScope.authData = authData;
 
-                    // If not being routed to the same name
-                    if (checked != toState.name) {
-                        event.preventDefault();
+              if ($state.current.name == ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+                event.preventDefault();
+                $state.go(ngFirebaseUserConfig.get('redirectPathLoggedIn'));
+              }
+            });
 
-                        // Wait for authentication information from Firebase
-                        waitForAuth.then(function() {
-                            if (toState[ngFirebaseUserConfig.get('routeAccess')] && !$rootScope[ngFirebaseUserConfig.get('dataLocation')].userInfo) {
-                                $state.go(ngFirebaseUserConfig.get('routeRedirect'));
-                            } else {
-                                checked = toState.name;
-                                $state.go(toState.name, toParams);
-                            }
-                        });
 
-                    } else {
-                        // clear the flag and don't prevent the default if the state change 
-                        // was just triggered by this watch
-                        checked = false;
-                    }
-                });
+            // Listen to routing errors
+            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, err) {
 
-            } // if
+              // Auth error
+              if (err == 'AUTH_REQUIRED') {
+
+                // Stop any other routing actions from running
+                event.preventDefault();
+
+                // route the user to the login page
+                $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
+              }
+
+            });
+          }
         }
     ]);
 
