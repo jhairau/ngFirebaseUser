@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-08-04
+ * @version v0.0.1 - 2015-08-06
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -182,6 +182,9 @@ angular.module('ngFirebaseUser')
 
 				// Broadcast login success
 				$rootScope.$broadcast(self.EVENTS.USER_LOGIN_SUCCESS, authData);
+
+				// push the authData to rootScope
+				$rootScope.authData = authData;
 
 				// Load the user
 				self.loadUser(authData.uid);
