@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-08-06
+ * @version v0.0.1 - 2015-08-25
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -125,6 +125,21 @@ angular.module('ngFirebaseUser')
                 scope.doLogin = function() {
                     ngFirebaseUserUser.loginEmail(scope.user.email, scope.user.password);
                 };
+            }
+        };
+    }]);
+
+angular.module('ngFirebaseUser')
+    .directive('ngFirebaseUserLogout', ['ngFirebaseUserConfig', 'ngFirebaseUserUser', function(ngFirebaseUserConfig, ngFirebaseUserUser) {
+        return {
+            restrict: 'CA',
+            link: function(scope, elem) {
+
+                // On click of the element we want to trigger the Firebase logout method
+                elem.bind('click', function() {
+                    ngFirebaseUserUser.logout();
+                });
+
             }
         };
     }]);
