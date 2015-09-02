@@ -3,6 +3,7 @@ Angular Module for Firebase 1.1+ authentication &amp; user management for Ionic 
 
 Not ready for use for requests yet
 ## TODO
+- Display Ionic or Bootstrap to login the user if they expire while on page
 
 ### Config
 Allow the developer to override paths in Firebase
