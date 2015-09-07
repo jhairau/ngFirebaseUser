@@ -30,13 +30,15 @@ angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache"
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"userEmail\" class=\"col-sm-2 control-label\">Email</label>\n" +
     "                        <div class=\"col-sm-10\">\n" +
-    "                            <input id=\"userEmail\" type=\"text\" ng-model=\"user.email\" placeholder=\"Email\" class=\"form-control\">\n" +
+    "                            <input id=\"userEmail\" type=\"email\" ng-model=\"user.email\"\n" +
+    "                                   placeholder=\"Email\" class=\"form-control\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"userPassword\" class=\"col-sm-2 control-label\">Password</label>\n" +
     "                        <div class=\"col-sm-10\">\n" +
-    "                            <input id=\"userPassword\" ng-model=\"user.password\" placeholder=\"Enter Password\" class=\"form-control\">\n" +
+    "                            <input type=\"password\" id=\"userPassword\" ng-model=\"user.password\"\n" +
+    "                                   placeholder=\"Enter Password\" class=\"form-control\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"form-group\">\n" +
