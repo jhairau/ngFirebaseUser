@@ -2,7 +2,30 @@ angular.module('ng-firebaseuser-templates', ['templates/bootstrap3/login-form.ht
 
 angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/bootstrap3/login-form.html",
-    "HTML");
+    "<div class=\"panel panel-info\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        <h3 class=\"panel-title\">Please Sign In</h3>\n" +
+    "    </div>\n" +
+    "    <div class=\"panel-body\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-5\">\n" +
+    "                <a href=\"#\"><img src=\"http://techulus.com/buttons/fb.png\"/></a><br/>\n" +
+    "                <a href=\"#\"><img src=\"http://techulus.com/buttons/tw.png\"/></a><br/>\n" +
+    "                <a href=\"#\"><img src=\"http://techulus.com/buttons/gplus.png\"/></a>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-7\" style=\"border-left:1px solid #ccc;height:160px\">\n" +
+    "                <form class=\"form-horizontal\" ng-submit=\"doLogin()\">\n" +
+    "                    <fieldset>\n" +
+    "                        <input type=\"text\" ng-model=\"user.email\" placeholder=\"Enter Email\" class=\"form-control input-md\">\n" +
+    "                        <input ng-model=\"user.password\" placeholder=\"Enter Password\" class=\"form-control input-md\">\n" +
+    "                        <button class=\"btn btn-info btn-sm pull-right\" type=\"submit\">Sign In</button>\n" +
+    "                    </fieldset>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("templates/ionic/login-form.html", []).run(["$templateCache", function($templateCache) {

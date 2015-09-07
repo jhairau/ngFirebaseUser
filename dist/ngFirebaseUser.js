@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-08-26
+ * @version v0.0.1 - 2015-09-07
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
