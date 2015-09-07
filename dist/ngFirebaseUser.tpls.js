@@ -19,7 +19,7 @@ angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache"
     "    }\n" +
     "</style>\n" +
     "\n" +
-    "<div class=\"panel panel-info\">\n" +
+    "<div class=\"panel panel-default\">\n" +
     "    <div class=\"panel-heading\">\n" +
     "        <h3 class=\"panel-title\">Please Sign In</h3>\n" +
     "    </div>\n" +
@@ -34,7 +34,7 @@ angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache"
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"userPassword\" class=\"col-sm-2 control-label\">Email</label>\n" +
+    "                        <label for=\"userPassword\" class=\"col-sm-2 control-label\">Password</label>\n" +
     "                        <div class=\"col-sm-10\">\n" +
     "                            <input id=\"userPassword\" ng-model=\"user.password\" placeholder=\"Enter Password\" class=\"form-control\">\n" +
     "                        </div>\n" +
