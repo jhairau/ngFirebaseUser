@@ -1,16 +1,26 @@
+<style>
+    ng-firebase-user-login-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ng-firebase-user-login-form .panel {
+        -webkit-box-flex: 0;
+        -webkit-flex: none;
+        -ms-flex: none;
+        flex: none;
+        max-width: 50%;
+    }
+</style>
+
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">Please Sign In</h3>
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-5">
-                <a href="#"><img src="http://techulus.com/buttons/fb.png"/></a><br/>
-                <a href="#"><img src="http://techulus.com/buttons/tw.png"/></a><br/>
-                <a href="#"><img src="http://techulus.com/buttons/gplus.png"/></a>
-            </div>
-
-            <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
+            <div class="col-md-12" style="border-left:1px solid #ccc;height:160px">
                 <form class="form-horizontal" ng-submit="doLogin()">
                     <fieldset>
                         <input type="text" ng-model="user.email" placeholder="Enter Email" class="form-control input-md">
