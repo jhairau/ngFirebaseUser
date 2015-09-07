@@ -7,6 +7,7 @@ angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache"
     "        display: flex;\n" +
     "        align-items: center;\n" +
     "        justify-content: center;\n" +
+    "        height: 100%;\n" +
     "    }\n" +
     "\n" +
     "    ng-firebase-user-login-form .panel {\n" +
