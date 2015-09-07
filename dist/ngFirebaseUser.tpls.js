@@ -27,11 +27,23 @@ angular.module("templates/bootstrap3/login-form.html", []).run(["$templateCache"
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-12\" style=\"border-left:1px solid #ccc;height:160px\">\n" +
     "                <form class=\"form-horizontal\" ng-submit=\"doLogin()\">\n" +
-    "                    <fieldset>\n" +
-    "                        <input type=\"text\" ng-model=\"user.email\" placeholder=\"Enter Email\" class=\"form-control input-md\">\n" +
-    "                        <input ng-model=\"user.password\" placeholder=\"Enter Password\" class=\"form-control input-md\">\n" +
-    "                        <button class=\"btn btn-info btn-sm pull-right\" type=\"submit\">Sign In</button>\n" +
-    "                    </fieldset>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"userEmail\" class=\"col-sm-2 control-label\">Email</label>\n" +
+    "                        <div class=\"col-sm-10\">\n" +
+    "                            <input id=\"userEmail\" type=\"text\" ng-model=\"user.email\" placeholder=\"Email\" class=\"form-control\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"userPassword\" class=\"col-sm-2 control-label\">Email</label>\n" +
+    "                        <div class=\"col-sm-10\">\n" +
+    "                            <input id=\"userPassword\" ng-model=\"user.password\" placeholder=\"Enter Password\" class=\"form-control\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <div class=\"col-sm-offset-2 col-sm-10\">\n" +
+    "                            <button class=\"btn btn-default\" type=\"submit\">Sign In</button>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </form>\n" +
     "            </div>\n" +
     "        </div>\n" +
