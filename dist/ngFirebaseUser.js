@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-09-07
+ * @version v0.0.1 - 2015-09-08
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
             firebaseUrl: null, // The base url for the Firebase app
             firebaseUserPath: 'user', // The base path within Firebase where user data is stored
             firebaseDataPath: 'data', // The baee apth within Firebase where app data is stored
-            
+
             redirectPathLoggedIn: null, // The path to redirect the user to when the are now authed (optional)
             redirectPathLoggedOut: null, // The path to redirect the ng app to when user is not authed
             angularUserNamespace: 'user', // The namespace to use in rootScope for user data
@@ -31,7 +31,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * Set the entire config by merging objects
          * @param {[type]} object [description]
          */
-        this.setConfig = function(object) {
+        this.setConfig = function (object) {
             angular.extend(baseConfig, object);
         };
 
@@ -40,7 +40,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * Get the entire config object
          * @return {[type]} [description]
          */
-        this.getConfig = function() {
+        this.getConfig = function () {
             return baseConfig;
         };
 
@@ -49,7 +49,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * Get a single config value based on key
          * @return {[type]} [description]
          */
-        this.getConfigValue = function(key) {
+        this.getConfigValue = function (key) {
             return baseConfig[key];
         };
 
@@ -58,7 +58,7 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
          * The required $get method
          * @return {[type]} [description]
          */
-        this.$get = function() {
+        this.$get = function () {
 
             return {
                 get: this.getConfigValue
@@ -69,37 +69,45 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
         return this;
     })
     .run(['$rootScope', '$state', 'ngFirebaseUserConfig',
-        function($rootScope, $state, ngFirebaseUserConfig) {
+        function ($rootScope, $state, ngFirebaseUserConfig) {
 
-          // run if we are routing
-          if (ngFirebaseUserConfig.get('routing')) {
+            // run if we are routing
+            if (ngFirebaseUserConfig.get('routing')) {
 
-            // On login, redirect the user to
-            $rootScope.$on('ngFirebaseUser:login_success', function(event,authData) {
-              $rootScope.authData = authData;
+                // User has Logged in
+                $rootScope.$on('ngFirebaseUser:login_success', function (event, authData) {
+                    $rootScope.authData = authData;
 
-              if ($state.current.name == ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
-                event.preventDefault();
-                $state.go(ngFirebaseUserConfig.get('redirectPathLoggedIn'));
-              }
-            });
+                    if ($state.current.name == ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+                        event.preventDefault();
+                        $state.go(ngFirebaseUserConfig.get('redirectPathLoggedIn'));
+                    }
+                });
+
+                // User has logged out
+                $rootScope.$on('ngFirebaseUser:logout', function (event, authData) {
+                    if ($state.current.name != ngFirebaseUserConfig.get('redirectPathLoggedOut')) {
+                        event.preventDefault();
+                        $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
+                    }
+                });
 
 
-            // Listen to routing errors
-            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, err) {
+                // Listen to routing errors
+                $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, err) {
 
-              // Auth error
-              if (err == 'AUTH_REQUIRED') {
+                    // Auth error
+                    if (err == 'AUTH_REQUIRED') {
 
-                // Stop any other routing actions from running
-                event.preventDefault();
+                        // Stop any other routing actions from running
+                        event.preventDefault();
 
-                // route the user to the login page
-                $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
-              }
+                        // route the user to the login page
+                        $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
+                    }
 
-            });
-          }
+                });
+            }
         }
     ]);
 
