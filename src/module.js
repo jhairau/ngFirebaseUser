@@ -90,14 +90,22 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
                 // Listen to routing errors
                 $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, err) {
 
-                    // Auth error
-                    if (err == 'AUTH_REQUIRED') {
+                    // Stop any other routing actions from running
+                    event.preventDefault();
 
-                        // Stop any other routing actions from running
-                        event.preventDefault();
+                    switch(err) {
+                        case 'AUTH_REQUIRED':
+                            // route the user to the login page
+                            $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
+                            break;
 
-                        // route the user to the login page
-                        $state.go(ngFirebaseUserConfig.get('redirectPathLoggedOut'));
+                        case 'ANON_REQUIRED':
+                            // route the user to the login page
+                            $state.go(ngFirebaseUserConfig.get('redirectPathLoggedIn'));
+                            break;
+
+                        default:
+                            break;
                     }
 
                 });

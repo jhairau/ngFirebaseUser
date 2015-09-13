@@ -1,5 +1,5 @@
 angular.module('ngFirebaseUser')
-	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject) {
+	.service('ngFirebaseUserUser', function ngFirebaseUserUser($rootScope, $q, ngFirebaseUserConfig, $firebaseAuth, $firebaseObject, $state) {
 
 		var self = this;
 		var unbindUser = null;
@@ -242,7 +242,7 @@ angular.module('ngFirebaseUser')
 					def.resolve(true);
 				}
 
-				def.reject(false);
+				def.reject('ANON_REQUIRED');
 			});
 
 			return def.promise;
