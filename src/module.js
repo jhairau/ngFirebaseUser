@@ -63,7 +63,9 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
     .run(['$rootScope', '$state', 'ngFirebaseUserConfig',
         function ($rootScope, $state, ngFirebaseUserConfig) {
 
-            // run if we are routing
+            //
+            // ---- ROUTING
+            //
             if (ngFirebaseUserConfig.get('routing')) {
 
                 // User has Logged in

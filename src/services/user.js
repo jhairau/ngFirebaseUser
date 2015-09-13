@@ -234,5 +234,19 @@ angular.module('ngFirebaseUser')
 			return authObj.$requireAuth();
 		};
 
+		this.requireAnonymous = function() {
+			var def = $q.defer();
+
+			this.waitForAuth().then(function(data){
+				if (!data) {
+					def.resolve(true);
+				}
+
+				def.reject(false);
+			});
+
+			return def.promise;
+		};
+
 		return this;
 	});

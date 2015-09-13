@@ -1,6 +1,6 @@
 /**
  * Angular Module for Firebase 1.1+ authentication & user management
- * @version v0.0.1 - 2015-09-08
+ * @version v0.0.1 - 2015-09-13
  * @link https://github.com/jhairau/ngFirebaseUser
  * @author Johnathan Hair <johnathan.hair.au@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -71,7 +71,9 @@ angular.module('ngFirebaseUser', ['firebase', 'ui.router'])
     .run(['$rootScope', '$state', 'ngFirebaseUserConfig',
         function ($rootScope, $state, ngFirebaseUserConfig) {
 
-            // run if we are routing
+            //
+            // ---- ROUTING
+            //
             if (ngFirebaseUserConfig.get('routing')) {
 
                 // User has Logged in
@@ -389,6 +391,20 @@ angular.module('ngFirebaseUser')
 		 */
 		this.requireAuth = function() {
 			return authObj.$requireAuth();
+		};
+
+		this.requireAnonymous = function() {
+			var def = $q.defer();
+
+			this.waitForAuth().then(function(data){
+				if (!data) {
+					def.resolve(true);
+				}
+
+				def.reject(false);
+			});
+
+			return def.promise;
 		};
 
 		return this;
