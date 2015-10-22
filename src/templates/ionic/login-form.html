@@ -11,5 +11,14 @@
         <label class="item">
             <button class="button button-block button-positive" type="submit">Log in</button>
         </label>
+        <label class="item" ng-switch="loginStatus">
+            <div ng-switch-when="authorising">
+                Attempting to login.
+            </div>
+            <div ng-switch-when="invalid">
+                Invalid login credentials. Please try again.
+            </div>
+            <div ng-switch-default></div>
+        </label>
     </div>
 </form>
