@@ -6,7 +6,10 @@
     "Johnathan Hair <johnathan.hair.au@gmail.com>"
   ],
   "description": "Angular Module for Firebase 1.1+ authentication & user management",
-  "main": "dist/ngFirebaseUser.js",
+   "main": [
+    "dist/ngFirebaseUser.js",
+    "dist/ngFirebaseUser.tpls.js"
+  ],
   "keywords": [
     "angular",
     "firebase",
